@@ -6,6 +6,8 @@ from telegram.ext import (
     MessageHandler,
     filters,
 )
+from bot.handlers.organization import organization_info
+from bot.handlers.notify import notify
 from dotenv import load_dotenv
 from bot.admin import add_classes_command
 from bot.database import init_db, add_test_masterclasses
@@ -39,9 +41,10 @@ def main():
     app.add_handler(CommandHandler("confirm", confirm))
     app.add_handler(CommandHandler("register", register))
     app.add_handler(CommandHandler("add_classes", add_classes_command))
-
+    app.add_handler(CommandHandler("notify", notify))
     app.add_handler(CallbackQueryHandler(callback_router))
     app.add_handler(CallbackQueryHandler(handle_callback))
+    app.add_handler(MessageHandler(filters.Regex("Организация|ℹ️ Организация"), organization_info))
 
     # Обработка нажатий на кнопки
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
