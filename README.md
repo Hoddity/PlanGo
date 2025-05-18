@@ -1,1 +1,1 @@
-BOT_TOKEN=7227185511:AAFkrqzcE-Pg69Ht3rB808-rsWqBvBMmXTM;
+запуск через файл main.py
